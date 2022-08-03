@@ -11,6 +11,7 @@ import {
   Snackbar,
   styled,
 } from '@mui/material';
+import { menuToTree, strfor } from 'app/utils/customUtil';
 import React, { useEffect, useState } from 'react';
 
 const AppButtonRoot = styled('div')(({ theme }) => ({
@@ -66,7 +67,7 @@ export default function FormGroupCheckbox(props) {
               <FormControlLabel
                 key={index}
                 control={<Checkbox checked={state[menu.id] || false} onChange={handleChange(menu.id)} value={menu.id} />}
-                label={menu.name}
+                label={strfor(menu.level - 1, "ㅡ ") + menu.name}
               />
             ))}
           </FormGroup>

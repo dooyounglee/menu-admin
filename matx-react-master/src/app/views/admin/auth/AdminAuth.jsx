@@ -7,6 +7,7 @@ import axios from "axios";
 import AuthTable from "./AuthTable";
 import MenuList from "./MenuList";
 import UserList from "./UserList";
+import { menuToTree } from "app/utils/customUtil";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -34,7 +35,7 @@ const AdminAuth = () => {
   useEffect(() => {
     axios.get("/menu/all").then((response) => {
       console.log(response.data);
-      setMenuList(response.data);
+      setMenuList(menuToTree(response.data));
     });
   }, []);
 

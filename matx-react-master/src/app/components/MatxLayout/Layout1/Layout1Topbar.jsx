@@ -123,17 +123,19 @@ const Layout1Topbar = () => {
             <NotificationBar />
           </NotificationProvider>
 
-          <ShoppingCart />
+          {/* <ShoppingCart /> */}
 
           <MatxMenu
             menuButton={
               <UserMenu>
                 <Hidden xsDown>
                   <Span>
-                    Hi <strong>{user.name}</strong>
+                    {/* Hi <strong>{user.name}</strong> */}
+                    Hi <strong>Admin</strong>
                   </Span>
                 </Hidden>
-                <Avatar src={user.avatar} sx={{ cursor: 'pointer' }} />
+                {/* <Avatar src={user.avatar} sx={{ cursor: 'pointer' }} /> */}
+                <Avatar src="/assets/images/face-6.jpg" sx={{ cursor: 'pointer' }} />
               </UserMenu>
             }
           >

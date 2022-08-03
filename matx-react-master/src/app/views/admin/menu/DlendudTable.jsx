@@ -41,15 +41,25 @@ const DlendudTable = (props) => {
     props.delMenu(menu);
   }
 
+  const noFilter = () => {
+    setList(props.menuList);
+  }
+
+  const filterDelYn = () => {
+    setList(list.filter((menu) => menu.delYn == null || menu.delYn == "N"));
+  }
+
   return (
     <Box width="100%" overflow="auto">
+      <Button onClick={noFilter}>show all</Button>
+      <Button onClick={filterDelYn}>delYn=N</Button>
       <StyledTable>
         <TableHead>
           <TableRow>
             <TableCell align="left">Name</TableCell>
-            <TableCell align="center">Icon</TableCell>
             <TableCell align="center">Level</TableCell>
             <TableCell align="center">Order</TableCell>
+            <TableCell align="center">DelYn</TableCell>
             <TableCell align="right">Action</TableCell>
             <TableCell align="right">Detail</TableCell>
           </TableRow>
@@ -59,9 +69,9 @@ const DlendudTable = (props) => {
           {list.length > 0 && list.map((menu, index) => (
             <TableRow key={index}>
               <TableCell align="left">{strfor(menu.level - 1, "ㅡ ")}{menu.name}</TableCell>
-              <TableCell align="center">{menu.icon}</TableCell>
               <TableCell align="center">{menu.level}</TableCell>
               <TableCell align="center">{menu.order}</TableCell>
+              <TableCell align="center">{menu.delYn || "N"}</TableCell>
               <TableCell align="right">
                 <IconButton onClick={() => delMenu(menu)}>
                   <Icon color="error">close</Icon>

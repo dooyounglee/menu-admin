@@ -54,7 +54,7 @@ const AuthTable = (props) => {
 
   function handleClickOpen(auth) {
     setOpen(true);
-    setState({ id: auth.id, name: auth.name, del: auth.del });
+    setState({ id: auth.id, name: auth.name, del: auth.del, menus: auth.menus, users: auth.users });
   }
 
   function handleClose() {
@@ -86,6 +86,8 @@ const AuthTable = (props) => {
   const {
     name,
     del,
+    menus,
+    users,
   } = state;
 
   return (

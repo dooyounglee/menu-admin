@@ -109,6 +109,7 @@ const SimpleForm = (props) => {
     parentId,
     level,
     description,
+    delYn,
   } = state;
 
   return (
@@ -166,7 +167,6 @@ const SimpleForm = (props) => {
             </LocalizationProvider> */}
 
             <TextField
-              sx={{ mb: 4 }}
               type="number"
               name="order"
               label="order"
@@ -175,6 +175,17 @@ const SimpleForm = (props) => {
               errorMessages={["this field is required"]}
               validators={["required"]}
             />
+
+            <FormControl fullWidth sx={{ mb: 4 }}>
+              <InputLabel>delYn</InputLabel>
+              <Select label="delYn"
+                      value={delYn || "N"}
+                      onChange={handleChange}
+                      name="delYn">
+                <MenuItem key={0} value="Y">Y</MenuItem>
+                <MenuItem key={1} value="N">N</MenuItem>
+              </Select>
+            </FormControl>
             
             <TextField
               type="text"

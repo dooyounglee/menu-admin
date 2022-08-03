@@ -11,9 +11,9 @@ import adminRoutes from 'app/views/admin/AdminRoutes';
 const routes = [
   {
     element: (
-      <AuthGuard>
+      // <AuthGuard>
         <MatxLayout />
-      </AuthGuard>
+      // </AuthGuard>
     ),
     children: [...dashboardRoutes, ...chartsRoute, ...materialRoutes, ...adminRoutes],
   },
