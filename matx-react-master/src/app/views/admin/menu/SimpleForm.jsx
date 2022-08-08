@@ -61,7 +61,8 @@ const SimpleForm = (props) => {
   // }, [state.password]);
 
   const handleSubmit = (event) => {
-    axios.post("http://localhost:8080/menu/save", state).then((response) => {
+    const token = localStorage.getItem("jwt");
+    axios.post("http://localhost:8080/menu/save", state, { headers : { 'Authorization': token } }).then((response) => {
       console.log(response.data);
       props.reRender();
       setOpen(true);

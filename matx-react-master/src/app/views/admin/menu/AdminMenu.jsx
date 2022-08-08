@@ -24,7 +24,8 @@ const AdminMenu = () => {
 
   useEffect(() => {
     setMenuList([]);
-    axios.get("/menu/all").then((response) => {
+    const token = localStorage.getItem("jwt");
+    axios.get("/menu/all", { headers : { 'Authorization': token } }).then((response) => {
       console.time('code_measure');
       console.log(response.data);
       let arr = response.data;
@@ -36,7 +37,8 @@ const AdminMenu = () => {
   }, [render]);
 
   const delMenu = (menu) => {
-    axios.delete("/menu/delete", {data: menu}).then((response) => {
+    const token = localStorage.getItem("jwt");
+    axios.delete("/menu/delete", {data: menu}, { headers : { 'Authorization': token } }).then((response) => {
       console.log(response.data);
       setRender(!render);
     });

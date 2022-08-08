@@ -26,21 +26,24 @@ const AdminAuth = () => {
   const [render, setRender] = useState(false);
 
   useEffect(() => {
-    axios.get("/auth/all").then((response) => {
+    const token = localStorage.getItem("jwt");
+    axios.get("/auth/all", { headers : { 'Authorization': token } }).then((response) => {
       console.log(response.data);
       setAuthList(response.data);
     });
   }, [render]);
 
   useEffect(() => {
-    axios.get("/menu/all").then((response) => {
+    const token = localStorage.getItem("jwt");
+    axios.get("/menu/all", { headers : { 'Authorization': token } }).then((response) => {
       console.log(response.data);
       setMenuList(menuToTree(response.data));
     });
   }, []);
 
   useEffect(() => {
-    axios.get("/user/all").then((response) => {
+    const token = localStorage.getItem("jwt");
+    axios.get("/user/all", { headers : { 'Authorization': token } }).then((response) => {
       console.log(response.data);
       setUserList(response.data);
     });
@@ -52,7 +55,8 @@ const AdminAuth = () => {
       if(obj[x]) arr.push(x);
     }
     let data = {auth: auth.id, arr: arr}
-    axios.post("/auth/menus", data).then(() => {
+    const token = localStorage.getItem("jwt");
+    axios.post("/auth/menus", data, { headers : { 'Authorization': token } }).then(() => {
       changeRender();
     })
   };
@@ -63,7 +67,8 @@ const AdminAuth = () => {
       if(obj[x]) arr.push(x);
     }
     let data = {auth: auth.id, arr: arr}
-    axios.post("/auth/users", data).then(() => {
+    const token = localStorage.getItem("jwt");
+    axios.post("/auth/users", data, { headers : { 'Authorization': token } }).then(() => {
       changeRender();
     })
   };

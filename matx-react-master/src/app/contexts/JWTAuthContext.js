@@ -21,18 +21,21 @@ const isValidToken = (accessToken) => {
 
 const setSession = (accessToken) => {
     if (accessToken) {
-        localStorage.setItem('accessToken', accessToken)
+        localStorage.setItem('jwt', accessToken)
         axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`
     } else {
-        localStorage.removeItem('accessToken')
+        localStorage.removeItem('jwt')
         delete axios.defaults.headers.common.Authorization
     }
 }
 
 const reducer = (state, action) => {
+    console.log(state, action)
     switch (action.type) {
         case 'INIT': {
+            console.log('INIT')
             const { isAuthenticated, user } = action.payload
+            console.log(isAuthenticated, user)
 
             return {
                 ...state,
@@ -42,7 +45,9 @@ const reducer = (state, action) => {
             }
         }
         case 'LOGIN': {
+            console.log('LOGIN')
             const { user } = action.payload
+            console.log(user)
 
             return {
                 ...state,
@@ -84,12 +89,20 @@ export const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const login = async (email, password) => {
-        console.log("login")
-        const response = await axios.post('/api/auth/login', {
+        setSession(null);
+
+        const response = await axios.post('/api/login', {
             email,
             password,
-        })
-        const { accessToken, user } = response.data
+        });
+        //const { accessToken, user } = response.data
+        const { user } = response.data
+        console.log(response)
+        console.log(response.headers)
+        //console.log(response.headers.get("authorization"))
+        console.log(response.headers.authorization)
+
+        const accessToken = response.headers.authorization;
 
         setSession(accessToken)
 
@@ -126,13 +139,14 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        console.log("오니")
         ; (async () => {
             try {
-                const accessToken = window.localStorage.getItem('accessToken')
+                const token = window.localStorage.getItem('jwt');
 
-                if (accessToken && isValidToken(accessToken)) {
-                    setSession(accessToken)
-                    const response = await axios.get('/api/auth/profile')
+                if (token && isValidToken(token)) {
+                    setSession(token)
+                    const response = await axios.get('/api/user', { headers : { 'Authorization': token } })
                     const { user } = response.data
 
                     dispatch({
@@ -143,6 +157,7 @@ export const AuthProvider = ({ children }) => {
                         },
                     })
                 } else {
+                    console.log("isValid: false")
                     dispatch({
                         type: 'INIT',
                         payload: {

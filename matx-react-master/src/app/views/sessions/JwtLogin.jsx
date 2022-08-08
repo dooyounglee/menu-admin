@@ -34,8 +34,10 @@ const JWTRoot = styled(JustifyBox)(() => ({
 
 // inital login credentials
 const initialValues = {
-  email: 'jason@ui-lib.com',
-  password: 'dummyPass',
+  //email: 'jason@ui-lib.com',
+  //password: 'dummyPass',
+  email: 'email01@doo.com',
+  password: 'user',
   remember: true,
 };
 
@@ -55,7 +57,6 @@ const JwtLogin = () => {
   const { login } = useAuth();
 
   const handleFormSubmit = async (values) => {
-    console.log("여기")
     console.log(values)
     setLoading(true);
     try {
@@ -81,7 +82,7 @@ const JwtLogin = () => {
               <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
-                validationSchema={validationSchema}
+                //validationSchema={validationSchema}
               >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
                   <form onSubmit={handleSubmit}>

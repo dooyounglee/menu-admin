@@ -70,14 +70,16 @@ const AuthTable = (props) => {
   };
 
   const saveAuth = () => {
-    axios.post("/auth/save", state).then(() => {
+    const token = localStorage.getItem("jwt");
+    axios.post("/auth/save", state, { headers : { 'Authorization': token } }).then(() => {
       setOpen(false);
       props.changeRender();
     })
   };
 
   const deleteAuth = () => {
-    axios.delete("/auth/delete", {data: state}).then(() => {
+    const token = localStorage.getItem("jwt");
+    axios.delete("/auth/delete", {data: state}, { headers : { 'Authorization': token } }).then(() => {
       setOpen(false);
       props.changeRender();
     })
