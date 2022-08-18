@@ -1,7 +1,7 @@
 
 
 # menu-admin
-Menu 프로젝트 frontend
+Menu 프로젝트 관리자페이지
 
 https://menu-admin-51e2f.firebaseapp.com
 
