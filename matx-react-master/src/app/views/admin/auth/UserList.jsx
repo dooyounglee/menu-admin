@@ -24,7 +24,7 @@ export default function FormGroupCheckbox(props) {
   const [open, setOpen] = useState(false);
 
   function handleClose(_, reason) {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
@@ -35,7 +35,6 @@ export default function FormGroupCheckbox(props) {
   };
 
   const saveUser = () => {
-    console.log(state);
     props.saveUser(state);
     setOpen(true);
   };
@@ -45,9 +44,9 @@ export default function FormGroupCheckbox(props) {
   }, [props.userList]);
 
   useEffect(() => {
-    if(!!props.auth) {
+    if (!!props.auth) {
       let tempObj = {};
-      for(let userId of props.auth.users) {
+      for (let userId of props.auth.users) {
         tempObj = { ...tempObj, [userId]: true };
       }
       setState(tempObj);
@@ -59,24 +58,30 @@ export default function FormGroupCheckbox(props) {
       <AppButtonRoot>
         <FormControl component="fieldset" className="formControl">
           <FormLabel component="legend">
-            <Button onClick={() => saveUser()}>Save</Button> 
+            <Button onClick={() => saveUser()}>Save</Button>
           </FormLabel>
-          
+
           <FormGroup>
             {userList.map((user, index) => (
               <FormControlLabel
                 key={index}
-                control={<Checkbox checked={state[user.id] || false} onChange={handleChange(user.id)} value={user.id} />}
-                label={user.username+"("+user.email+")"}
+                control={
+                  <Checkbox
+                    checked={state[user.id] || false}
+                    onChange={handleChange(user.id)}
+                    value={user.id}
+                  />
+                }
+                label={user.username + '(' + user.email + ')'}
               />
             ))}
           </FormGroup>
-          <FormHelperText>Be careful</FormHelperText>
+          {/* <FormHelperText>Be careful</FormHelperText> */}
         </FormControl>
       </AppButtonRoot>
 
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }} variant="filled">
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }} variant="filled">
           This is a success message!
         </Alert>
       </Snackbar>

@@ -57,7 +57,6 @@ const JwtLogin = () => {
   const { login } = useAuth();
 
   const handleFormSubmit = async (values) => {
-    console.log(values)
     setLoading(true);
     try {
       await login(values.email, values.password);
@@ -116,7 +115,7 @@ const JwtLogin = () => {
                       sx={{ mb: 1.5 }}
                     />
 
-                    <FlexBox justifyContent="space-between">
+                    {/* <FlexBox justifyContent="space-between">
                       <FlexBox gap={1}>
                         <Checkbox
                           size="small"
@@ -135,7 +134,7 @@ const JwtLogin = () => {
                       >
                         Forgot password?
                       </NavLink>
-                    </FlexBox>
+                    </FlexBox> */}
 
                     <LoadingButton
                       type="submit"
@@ -147,7 +146,7 @@ const JwtLogin = () => {
                       Login
                     </LoadingButton>
 
-                    <Paragraph>
+                    {/* <Paragraph>
                       Don't have an account?
                       <NavLink
                         to="/session/signup"
@@ -155,7 +154,7 @@ const JwtLogin = () => {
                       >
                         Register
                       </NavLink>
-                    </Paragraph>
+                    </Paragraph> */}
                   </form>
                 )}
               </Formik>
