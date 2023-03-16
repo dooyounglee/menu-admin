@@ -38,8 +38,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "npx react-scripts start",
-    "build": "npx react-scripts build",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && npx react-scripts start",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && npx react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "ghp": "react-scripts build && gh-pages -d build"
