@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://gostbaducking1-menu-backend.herokuapp.com';
+// axios.defaults.baseURL = 'https://gostbaducking1-menu-backend.herokuapp.com';
+axios.defaults.baseURL = 'https://menu-test-5smj.onrender.com';
 // axios.defaults.baseURL = 'http://localhost:8080';
 
 const axiosInstance = axios.create();
