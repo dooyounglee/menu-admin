@@ -14,7 +14,7 @@ jobs:
       - run: cd matx-react-master && npm install && CI=false npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          entrypoint: /matx-react-master
+          entrypoint: /home/runner/work/menu-admin/matx-react-master
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MENU_ADMIN_51E2F }}'
           channelId: live
